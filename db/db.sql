@@ -1,3 +1,7 @@
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS mydatabase;
+USE mydatabase;
+
 -- Crear la tabla Equipos
 CREATE TABLE Equipos (
     EquipoID INT PRIMARY KEY,
@@ -8,7 +12,7 @@ CREATE TABLE Equipos (
 INSERT INTO Equipos (EquipoID, NombreEquipo) VALUES
 (1, 'Real Madrid'),
 (2, 'FC Barcelona'),
-(3, 'Manchester United'),
+(3, 'Manchester United');
 -- Agrega los equipos restantes...
 
 -- Crear la tabla Jugadores
@@ -23,7 +27,7 @@ CREATE TABLE Jugadores (
 INSERT INTO Jugadores (JugadorID, NombreJugador, EquipoID) VALUES
 -- Jugadores del Real Madrid (EquipoID = 1)
 (1, 'Cristiano Ronaldo', 1),
-(2, 'Sergio Ramos', 1),
+(2, 'Sergio Ramos', 1);
 -- Agrega los jugadores restantes...
 
 -- Crear la tabla Rendimiento
@@ -46,11 +50,11 @@ CREATE TABLE HistoricoDeRendimiento (
 -- Insertar algunos datos en la tabla Rendimiento
 INSERT INTO Rendimiento (RendimientoID, Puntuacion) VALUES
 (1, 90),
-(2, 85),
+(2, 85);
 -- Agrega más datos de rendimiento...
 
 -- Insertar datos en la tabla HistoricoDeRendimiento
 INSERT INTO HistoricoDeRendimiento (HistoricoID, FechaRendimiento, JugadorID, RendimientoID) VALUES
 (1, '2024-01-03', 1, 1),
-(2, '2024-01-03', 2, 2),
+(2, '2024-01-03', 2, 2);
 -- Agrega más datos de historial de rendimiento...
