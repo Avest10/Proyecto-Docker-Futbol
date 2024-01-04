@@ -87,7 +87,7 @@ INSERT INTO Rendimiento (RendimientoID, Puntuacion) VALUES
 (21, 81),
 (22, 79),
 (23, 93),
-(24, 86);
+(24, 86),
 (25, 91),
 (26, 88),
 (27, 86),
@@ -100,6 +100,7 @@ INSERT INTO Rendimiento (RendimientoID, Puntuacion) VALUES
 (34, 88),
 (35, 87),
 (36, 90);
+
 
 -- Insertar datos en la tabla HistoricoDeRendimiento
 INSERT INTO HistoricoDeRendimiento (HistoricoID, FechaRendimiento, JugadorID, RendimientoID) VALUES
