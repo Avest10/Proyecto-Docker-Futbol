@@ -29,7 +29,7 @@ CREATE TABLE Jugadores (
     FOREIGN KEY (EquipoID) REFERENCES Equipos(EquipoID)
 );
 
--- Insertar 11 jugadores por cada equipo
+-- Insertar jugadores por cada equipo
 INSERT INTO Jugadores (JugadorID, NombreJugador, EquipoID) VALUES
 -- Jugadores del Real Madrid (EquipoID = 1)
 (1, 'Cristiano Ronaldo', 1),
