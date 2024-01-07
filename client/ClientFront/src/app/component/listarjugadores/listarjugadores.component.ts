@@ -7,7 +7,9 @@ import { ApiService } from '../../service/api.service';
   styleUrl: './listarjugadores.component.css'
 })
 export class ListarjugadoresComponent {
+  rendimiento: any[] = [];
   jugadores: any[] = [];
+  mostrarPopupFlag: boolean = false
 
   constructor(private api: ApiService){
 
@@ -15,6 +17,26 @@ export class ListarjugadoresComponent {
 
   ngOnInit(): void {
     this.listarjugadores();
+  }
+
+  // Función para mostrar el popup
+  mostrarPopup(JugadorID: number) {
+    this.mostrarPopupFlag = true;
+
+    this.api.getRendimiento(JugadorID).subscribe(
+      data => {
+        this.jugadores = this.transformarArrayRendiemiento(data)
+      },
+      error => {
+        console.error('Error al obtener la lista de jugadores.', error);
+      }
+    )   
+
+  }
+ 
+  // Función para cerrar el popup
+  cerrarPopup() {
+    this.mostrarPopupFlag = false;
   }
 
   listarjugadores(){
@@ -40,6 +62,16 @@ export class ListarjugadoresComponent {
 
 
 
+  transformarArrayRendiemiento(Array: any[]): any[] {
+    return Array.map(rendimiento => {
+      return {
+        HistoricoID: rendimiento[0],
+        FechaRendimiento: rendimiento[1],
+        JugadorID: rendimiento[2],
+        RendimientoID: rendimiento[3]
+      };
+    });
+  }
 
 
 

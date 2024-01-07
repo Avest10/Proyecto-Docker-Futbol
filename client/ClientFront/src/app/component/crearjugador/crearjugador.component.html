@@ -1,0 +1,13 @@
+<form (submit)="nuevoJugador()" method="post">
+    <h2>Formulario de Jugadores</h2>
+    <label for="JugadorID">ID del Jugador:</label>
+    <input  [(ngModel)]="Jugador.JugadorID" type="text" id="JugadorID" name="JugadorID" required>
+
+    <label for="NombreJugador">Nombre del Jugador:</label>
+    <input [(ngModel)]="Jugador.NombreJugador" type="text" id="NombreJugador" name="NombreJugador" required>
+
+    <label for="EquipoID">ID del Equipo:</label>
+    <input [(ngModel)]="Jugador.EquipoID" type="text" id="EquipoID" name="EquipoID" required>
+
+    <button type="submit">Agregar Jugador</button>
+  </form>

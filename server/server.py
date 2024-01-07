@@ -49,15 +49,15 @@ def getJugadores():
     else: 
         return jsonify({"message": "Error al obtener los jugadores."}), 500
     
-@app.route('/jugadores/<int:id_equipo>', methods = ['GET'])
-def getJugadorEquipo(id_equipo):
-    query = "SELECT * FROM Jugadores WHERE JugadorID = %s"
-    jugadores = execute_query(query, (id_equipo,), fetch_one = True)
+@app.route('/rendimiento/<int:id_jugador>', methods = ['GET'])
+def getJugadorEquipo(id_jugador):
+    query = "SELECT * FROM HistoricoDeRendimiento WHERE JugadorID = %s"
+    rendimiento = execute_query(query, (id_jugador,), fetch_one = True)
     
-    if jugadores:
-        return jsonify(jugadores)
+    if rendimiento:
+        return jsonify(rendimiento)
     else: 
-        return jsonify({"message": "Error al obtener los jugadores."}), 404
+        return jsonify({"message": "Error al obtener el rendimiento."}), 404
     
 
 @app.route('/jugadores', methods=['POST'])
@@ -73,6 +73,15 @@ def nuevo_jugador():
    
     execute_query(query, params)
     return jsonify({"message": "Jugador añadido con éxito."})
+
+@app.route('/jugadores/<int:id_jugador>', methods=['DELETE'])
+def borrarJugador(id_jugador):
+    # Eliminamos jugador
+    query = "DELETE FROM Jugadores WHERE JugadorID = %s"
+    params = (id_jugador,)
+ 
+    execute_query(query, params)
+    return jsonify({"message": "back_ Jugador borrado de la base de datos."}) , id_jugador
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000) #para acceder -> http://127.0.0.1:5000/index

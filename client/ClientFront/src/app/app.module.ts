@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarjugadoresComponent } from './component/listarjugadores/listarjugadores.component';
 import { VerjugadorComponent } from './component/verjugador/verjugador.component';
+import { CrearjugadorComponent } from './component/crearjugador/crearjugador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListarjugadoresComponent,
-    VerjugadorComponent
+    VerjugadorComponent,
+    CrearjugadorComponent
   ],
   imports: [
     BrowserModule,
