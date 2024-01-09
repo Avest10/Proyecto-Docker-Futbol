@@ -21,7 +21,7 @@ export class CrearjugadorComponent {
       },
       error => {
         console.error('Error al añadir el jugador.', error);
-        // Puedes manejar el error de alguna manera
+        
       }
     );
   }

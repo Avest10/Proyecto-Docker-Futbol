@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-listarjugadores',
   templateUrl: './listarjugadores.component.html',
-  styleUrl: './listarjugadores.component.css'
+  styleUrls: ['./listarjugadores.component.css']
 })
 export class ListarjugadoresComponent {
   rendimiento: any[] = [];
   jugadores: any[] = [];
-  mostrarPopupFlag: boolean = false
+  mostrarPopupFlag: boolean = false;
 
-  constructor(private api: ApiService){
-
-  }
+  constructor(private api: ApiService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.listarjugadores();
@@ -25,33 +24,33 @@ export class ListarjugadoresComponent {
 
     this.api.getRendimiento(JugadorID).subscribe(
       data => {
-        this.jugadores = this.transformarArrayRendiemiento(data)
+        this.rendimiento = this.transformarArrayRendimiento(data);
       },
       error => {
-        console.error('Error al obtener la lista de jugadores.', error);
+        console.error('Error al obtener la lista de rendimiento.', error);
       }
-    )   
-
+    );
   }
- 
+
+
   // Función para cerrar el popup
   cerrarPopup() {
     this.mostrarPopupFlag = false;
   }
 
-  listarjugadores(){
+  listarjugadores() {
     this.api.getJugadores().subscribe(
       data => {
-        this.jugadores = this.transformarArray(data)
+        this.jugadores = this.transformarArray(data);
       },
       error => {
         console.error('Error al obtener la lista de jugadores.', error);
       }
-    )
+    );
   }
 
-  transformarArray(Array: any[]): any[] {
-    return Array.map(jugador => {
+  transformarArray(array: any[]): any[] {
+    return array.map(jugador => {
       return {
         JugadorID: jugador[0],
         NombreJugador: jugador[1],
@@ -60,23 +59,27 @@ export class ListarjugadoresComponent {
     });
   }
 
-
-
-  transformarArrayRendiemiento(Array: any[]): any[] {
-    return Array.map(rendimiento => {
+  transformarArrayRendimiento(array: any[]): any[] {
+    return array.map(rendimiento => {
       return {
-        HistoricoID: rendimiento[0],
-        FechaRendimiento: rendimiento[1],
-        JugadorID: rendimiento[2],
-        RendimientoID: rendimiento[3]
+        FechaRendimiento: this.formatFecha(rendimiento[0]),
+        JugadorID: rendimiento[1],
+        RendimientoID: rendimiento[2]
       };
     });
   }
 
+  private formatFecha(fecha: any): string {
+    if (!fecha) {
+      return '';  // O cualquier valor predeterminado que desees si fecha es undefined
+    }
 
+    // Formatear la fecha directamente en TypeScript
+    const dateObj = new Date(fecha);
+    const year = dateObj.getFullYear();
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+    const day = dateObj.getDate().toString().padStart(2, '0');
 
-
-
-
-
+    return `${year}-${month}-${day}`;
+  }
 }

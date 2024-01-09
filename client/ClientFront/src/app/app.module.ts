@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { CrearjugadorComponent } from './component/crearjugador/crearjugador.com
     FormsModule
   ],
   providers: [
+    DatePipe,
     provideClientHydration()
   ],
   bootstrap: [AppComponent]

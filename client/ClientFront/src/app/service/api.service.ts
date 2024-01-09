@@ -26,6 +26,6 @@ export class ApiService {
     return this.http.delete(`${this.baseUrl}/jugadores/${JugadorID}`);
   }
   getRendimiento(JugadorID: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/rendimiento/${JugadorID}`);
+    return this.http.get<any>(`${this.baseUrl}/jugador/${JugadorID}`);
   }
 }

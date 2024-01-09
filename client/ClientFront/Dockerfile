@@ -1,5 +1,6 @@
-FROM node:18.18-alpine3.18 as build
- 
+FROM node:18.18-alpine3.18 as build 
+ #imagen angular compila y convierte en proy ejecutable
+
 # set the working directory to /app
 WORKDIR /app
 # copy the current directory contents into the container at /app
@@ -12,6 +13,7 @@ RUN npm run build
 FROM nginx:latest
 # copy the custom nginx configuration file to the container in the default
 # location
+#ejecuta el ejecutable de arriba
 COPY nginx.conf /etc/nginx/nginx.conf
 # copy the built application from the build stage to the nginx html
 # directory

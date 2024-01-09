@@ -9,7 +9,7 @@ CORS(app)
  
 # Configura la conexión a la base de datos MySQL
 db_config = {
-    'host': 'mysql',  # Definido en el docker-compose en la sección posterior
+    'host': 'mysql',  
     'user': 'root',
     'password': 'ejemplo',
     'database': 'mydatabase'
@@ -49,15 +49,16 @@ def getJugadores():
     else: 
         return jsonify({"message": "Error al obtener los jugadores."}), 500
     
-@app.route('/rendimiento/<int:id_jugador>', methods = ['GET'])
-def getJugadorEquipo(id_jugador):
-    query = "SELECT * FROM HistoricoDeRendimiento WHERE JugadorID = %s"
-    rendimiento = execute_query(query, (id_jugador,), fetch_one = True)
+@app.route('/jugador/<int:jugador_id>', methods=['GET'])
+def get_rendimiento(jugador_id):
     
-    if rendimiento:
-        return jsonify(rendimiento)
-    else: 
-        return jsonify({"message": "Error al obtener el rendimiento."}), 404
+    query = "SELECT HistoricoID, FechaRendimiento, Puntuacion FROM HistoricoDeRendimiento, Rendimiento  WHERE HistoricoDeRendimiento.RendimientoID = Rendimiento.RendimientoID and HistoricoDeRendimiento.JugadorID = %s"
+
+    jugador = execute_query(query, (jugador_id,), fetch_one=True)
+    if jugador:
+        return jsonify(jugador)
+    else:
+        return jsonify({"message": "Rendimiento no encontrado."}), 404
     
 
 @app.route('/jugadores', methods=['POST'])

@@ -30,18 +30,16 @@
       <table>
         <thead>
           <tr>
-            <th>HistoricoID</th>
-            <th>FechaRendimiento</th>
-            <th>JugadorID ID</th>
-            <th>RendimientoID</th>
+            <th>Fecha Rendimiento</th>
+            <th>Jugador ID</th>
+            <th>Rendimiento ID</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let rendimiento of rendimiento">
-            <td>{{ rendimiento.HistoricoID }}</td>
-            <td>{{ rendimiento.FechaRendimiento }}</td>
-            <td>{{ rendimiento.JugadorID }}</td>
-            <td>{{ rendimiento.RendimientoID }}</td>
+          <tr *ngFor="let rend of rendimiento">
+            <td>{{ rend.FechaRendimiento }}</td>
+            <td>{{ rend.JugadorID }}</td>
+            <td>{{ rend.RendimientoID }}</td>
           </tr>
         </tbody>
       </table>
